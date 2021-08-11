@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { CreateHtmlComponent } from './create-html/create-html.component';
+import { CreateFormComponent } from './create-html/create-form/create-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateHtmlComponent
+    CreateHtmlComponent,
+    CreateFormComponent
   ],
   imports: [
     BrowserModule
