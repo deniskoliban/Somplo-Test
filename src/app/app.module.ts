@@ -9,6 +9,7 @@ import { MaterialModule } from './app-modules/material.module';
 import { PreviewComponent } from './create-html/preview/preview.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { CropperComponent } from './cropper/cropper.component';
+import { ImgPreviewComponent } from './cropper/img-preview/img-preview.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { CropperComponent } from './cropper/cropper.component';
     CreateHtmlComponent,
     CreateFormComponent,
     PreviewComponent,
-    CropperComponent
+    CropperComponent,
+    ImgPreviewComponent
   ],
   imports: [
     BrowserModule,
