@@ -3,9 +3,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { CropperComponent } from '../../shared/components/cropper/cropper.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
+import { FileService } from '../../shared/services/file.service';
 
 export interface CropperDialogData {
-  imgFile: string;
+  imgFile: File;
 }
 
 @Component({
@@ -15,13 +16,13 @@ export interface CropperDialogData {
 })
 export class CreateFormComponent implements OnInit {
 
-  imageSrc = '';
+  currentFileName = '';
   imageFile: File | null = null;
   formGroup: FormGroup;
-  urlPattern: RegExp = /[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)?/gi;
+  urlPattern: RegExp = /http(s)?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=/]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/g;
 
   formControls = {
-    fileControl: new FormControl('', Validators.required),
+    fileControl: new FormControl(null, Validators.required),
     url: new FormControl(
       '',
       [
@@ -34,6 +35,7 @@ export class CreateFormComponent implements OnInit {
   constructor(
     public dialog: MatDialog,
     private formBuilder: FormBuilder,
+    private fileService: FileService
   ) {
     this.formGroup = this.formBuilder.group(this.formControls)
   }
@@ -41,6 +43,7 @@ export class CreateFormComponent implements OnInit {
   ngOnInit(): void {
     this.formControls.fileControl.valueChanges.subscribe((file: File) => {
       this.imageFile = file || null;
+      this.currentFileName = file.name;
     })
   }
 
@@ -54,9 +57,16 @@ export class CreateFormComponent implements OnInit {
     });
     dialog.afterClosed()
       .pipe(take(1))
-      .subscribe((data: string) => {
-        console.log(data)
+      .subscribe((data: Blob) => {
+        if (data) {
+          const croppedName = this.currentFileName.startsWith('(cropped)') ? this.currentFileName : '(cropped)' + this.currentFileName
+          const croppedImgFile = this.fileService.blobToFile(data, croppedName)
+          this.formControls.fileControl.setValue(croppedImgFile)
+        }
       })
+  }
+
+  submit() {
   }
 
 }
