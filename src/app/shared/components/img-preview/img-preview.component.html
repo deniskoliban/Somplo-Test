@@ -1,4 +1,4 @@
-<div class="img-preview">
+<div *ngIf="imageSrc" class="img-preview">
   <h3>Preview</h3>
   <img style="object-fit: contain" [src]="imageSrc"  alt="Preview"/>
 </div>
