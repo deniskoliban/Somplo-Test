@@ -8,8 +8,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './app-modules/material.module';
 import { PreviewComponent } from './create-html/preview/preview.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
-import { CropperComponent } from './cropper/cropper.component';
-import { ImgPreviewComponent } from './cropper/img-preview/img-preview.component';
+import { CropperComponent } from './shared/components/cropper/cropper.component';
+import { ImgPreviewComponent } from './shared/components/img-preview/img-preview.component';
+import { MatButtonModule } from '@angular/material/button';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -24,7 +27,10 @@ import { ImgPreviewComponent } from './cropper/img-preview/img-preview.component
     BrowserModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ImageCropperModule
+    ImageCropperModule,
+    MatButtonModule,
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]
