@@ -4,13 +4,13 @@
   <div class="" >
     <div class="" style="max-height: 500px">
       <image-cropper
-        [imageFile]="imageFile"
+        [imageFile]="imageFile!"
         [maintainAspectRatio]="true"
         format="png"
         (imageCropped)="imageCropped($event)">
       </image-cropper>
     </div>
-    <app-img-preview [imageSrc]="croppedImage"></app-img-preview>
+    <app-img-preview [imageSrc]="croppedImageBase64"></app-img-preview>
   </div>
 </mat-dialog-content>
 
