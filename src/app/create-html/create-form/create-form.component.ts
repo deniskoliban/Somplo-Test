@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CropperComponent } from '../../shared/components/cropper/cropper.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { take } from 'rxjs/operators';
 
 export interface CropperDialogData {
   imgFile: string;
@@ -27,7 +28,7 @@ export class CreateFormComponent implements OnInit {
         Validators.required,
         Validators.pattern(this.urlPattern)
       ]),
-    side: new FormControl(null),
+    fromLeft: new FormControl(true),
   }
 
   constructor(
@@ -51,6 +52,11 @@ export class CreateFormComponent implements OnInit {
         imgFile: this.imageFile
       }
     });
+    dialog.afterClosed()
+      .pipe(take(1))
+      .subscribe((data: string) => {
+        console.log(data)
+      })
   }
 
 }

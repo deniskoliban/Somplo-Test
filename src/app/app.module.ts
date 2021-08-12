@@ -13,6 +13,7 @@ import { ImgPreviewComponent } from './shared/components/img-preview/img-preview
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     ImageCropperModule,
     MatButtonModule,
     ReactiveFormsModule,
-    MatIconModule
+    MatIconModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
