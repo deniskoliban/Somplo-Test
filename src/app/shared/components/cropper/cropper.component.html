@@ -1,1 +1,22 @@
-<p>cropper works!</p>
+<h1 mat-dialog-title>Crop Image</h1>
+
+<mat-dialog-content>
+  <div class="" >
+    <div class="" style="max-height: 500px">
+      <image-cropper
+        [imageFile]="imageFile"
+        [resizeToWidth]="256"
+        format="png"
+        (imageCropped)="imageCropped($event)"
+        (imageLoaded)="imageLoaded()"
+        (cropperReady)="cropperReady()"
+        (loadImageFailed)="loadImageFailed()"></image-cropper>
+    </div>
+    <app-img-preview [imageSrc]="croppedImage"></app-img-preview>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button (click)="dialogRef.close(null)">Cancel</button>
+  <button mat-raised-button color="primary" (click)="dialogRef.close(croppedImage)">Save</button>
+</mat-dialog-actions>

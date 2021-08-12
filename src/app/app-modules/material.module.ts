@@ -1,19 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
-
-
-const MaterialModules = [
-  MatCardModule
-]
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 @NgModule({
   imports: [
     CommonModule,
-    MaterialModules
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    NgxMatFileInputModule
   ],
   exports: [
-    MaterialModules
+    MatCardModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    NgxMatFileInputModule
   ]
 })
 export class MaterialModule { }
