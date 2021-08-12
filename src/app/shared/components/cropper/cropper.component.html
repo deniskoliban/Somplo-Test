@@ -5,12 +5,10 @@
     <div class="" style="max-height: 500px">
       <image-cropper
         [imageFile]="imageFile"
-        [resizeToWidth]="256"
+        [maintainAspectRatio]="true"
         format="png"
-        (imageCropped)="imageCropped($event)"
-        (imageLoaded)="imageLoaded()"
-        (cropperReady)="cropperReady()"
-        (loadImageFailed)="loadImageFailed()"></image-cropper>
+        (imageCropped)="imageCropped($event)">
+      </image-cropper>
     </div>
     <app-img-preview [imageSrc]="croppedImage"></app-img-preview>
   </div>
