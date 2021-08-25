@@ -1,2 +1,2 @@
-<app-create-form></app-create-form>
-<app-preview></app-preview>
+<app-create-form (templateDocConfigEventEmitter)="templateDocSubject$.next($event)"></app-create-form>
+<app-preview [templateDocConfig]="templateDocSubject$ | async"></app-preview>

@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CropperComponent } from '../../shared/components/cropper/cropper.component';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { take } from 'rxjs/operators';
 import { FileService } from '../../shared/services/file.service';
+import { TemplateDocConfig } from '../../shared/services/template-document.service';
 
 export interface CropperDialogData {
   imgFile: File;
@@ -15,6 +16,8 @@ export interface CropperDialogData {
   styleUrls: ['./create-form.component.css']
 })
 export class CreateFormComponent implements OnInit {
+
+  @Output() templateDocConfigEventEmitter = new EventEmitter<TemplateDocConfig>()
 
   currentFileName = '';
   imageFile: File | null = null;
@@ -67,6 +70,9 @@ export class CreateFormComponent implements OnInit {
   }
 
   submit() {
+    if (this.formGroup.valid) {
+      this.templateDocConfigEventEmitter.emit(this.formGroup.value)
+    }
   }
 
 }
